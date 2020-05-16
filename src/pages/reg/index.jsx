@@ -14,15 +14,16 @@ class index extends React.Component {
     } else {
       axios.post('http://api.baxiaobu.com/index.php/home/v1/register',{username:this.refs.user.value,pwd:this.refs.pwd.value}).then((res)=>{
 			 console.log(res)
-      //   if (res.status === 200) {
-      //     message.info('登录成功');
-      //  }
+        if (res.status === 200) {
+          message.info('Registration successful');
+          this.props.history.push('/login')
+       }
 		 }) 
     }
   }
 
   render() {
-    return <div id='reg' >
+    return <div id='reg'>
          <div className="wrap">
           <p>SIGN UP</p>
           <p><input type="text" placeholder="NAME" ref='user' /></p>
@@ -34,5 +35,6 @@ class index extends React.Component {
     </div>;
   }
 }
+
 
 export default index;

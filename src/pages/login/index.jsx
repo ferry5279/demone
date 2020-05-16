@@ -13,7 +13,8 @@ class index extends React.Component {
       axios.post('https://api.baxiaobu.com/index.php/home/v1/login',{username:this.refs.user.value}).then((res)=>{
 			 console.log(res)
         if (res.status === 200) {
-          message.info('登录成功');
+          message.info('Login Successful');
+          this.props.history.push('/home')
        }
 		 }) 
     }
