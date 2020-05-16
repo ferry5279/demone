@@ -4,7 +4,6 @@ import {  message } from 'antd';
 import './style.less';
 class index extends React.Component {
   reg = () => {
-    console.log(this.refs.user.value, this.refs.pwd.value)
     if (this.refs.user.value === '') {
       alert('用户名为空')
     }else if (this.refs.pwd.value === '') {
@@ -13,7 +12,6 @@ class index extends React.Component {
       alert('密码不一致')
     } else {
       axios.post('http://api.baxiaobu.com/index.php/home/v1/register',{username:this.refs.user.value,pwd:this.refs.pwd.value}).then((res)=>{
-			 console.log(res)
         if (res.status === 200) {
           message.info('Registration successful');
           this.props.history.push('/login')
