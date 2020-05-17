@@ -17,7 +17,7 @@ class index extends React.Component {
           console.log(res)
           if(res.status===200){
             message.info('添加成功')
-            this.props.history.push('/home/form')
+            this.props.history.push('/home/table')
           }
         })
       }
@@ -25,7 +25,7 @@ class index extends React.Component {
 }
   cancel = () => {
     this.props.form.setFieldsValue({
-          name:'',msg:'',age:'',details:''
+          name:'',msg:'',age:'',hospital:'',gender:''
           });
 }
   render() {
@@ -66,13 +66,19 @@ class index extends React.Component {
             {getFieldDecorator('msg', {
               rules: [{ required: true, message: 'Please input your msg!' }],
             })(
-              <Input placeholder="Price" />)}
+              <Input placeholder="Hospital" />)}
+          </Form.Item>
+          <Form.Item label="Gender" {...formItemLayout}>
+            {getFieldDecorator('gender', {
+              rules: [{ required: true, message: 'Please input your gender!' }],
+            })(
+              <Input placeholder="Hospital" />)}
           </Form.Item>
           <Form.Item label="File upload Image" {...formItemLayout}>
-            {getFieldDecorator('details', {
-                rules: [{ required: true, message: 'Please input your details!' }],
+            {getFieldDecorator('hospital', {
+                rules: [{ required: true, message: 'Please input your hospital!' }],
               })(
-                <Input placeholder="details" />)}
+                <Input placeholder="hospital" />)}
           </Form.Item>
           <Form.Item {...buttonItemLayout}>
             <Button type="primary" htmlType="submit"  className="login-form-button">Submit</Button>

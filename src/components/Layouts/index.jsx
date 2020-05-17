@@ -1,6 +1,7 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Input } from 'antd';
-import { NavLink} from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import axios from 'axios';
 import './style.less';
 import logo from '@/untils/11.png';
 const { SubMenu } = Menu;
@@ -11,8 +12,22 @@ const { Search } = Input;
 
 class index extends React.Component {
  
-
+  sear = (value) => {
+   console.log(value)
+    axios.get('https://api.baxiaobu.com/index.php/home/v5/findUser?keyword=' + value).then(res => {
+      console.log(res)
+      localStorage.setItem('seardata',JSON.stringify(res.data.info))
+   })
+  }
+  componentDidMount() {
+    console.log(this.props,11)
+    
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps,22)
+  }
   render() {
+    console.log(this.props)
     return <div id='lay'  >
         <Layout>
           <Header className="header">
@@ -21,7 +36,7 @@ class index extends React.Component {
             <div className='sear'>
               <Search
                 placeholder="input search text"
-                onSearch={value => console.log(value)}
+                onSearch={(value) =>this.sear(value)}
                 style={{ width: 200 }}
               />
             </div>
