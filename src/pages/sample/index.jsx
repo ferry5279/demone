@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Table,Card  } from 'antd';
+import { Table,Card ,Pagination } from 'antd';
 import './style.less'
 const columns = [
   {
@@ -24,7 +24,8 @@ const columns = [
 class index extends React.Component {
   state = {
     datas: [],
-    count:0
+    count: 1,
+    pages:6
   }
   componentDidMount() {
    axios.get('https://blogs.zdldove.top/Home/Apis/listWithPage?page='+this.state.count).then(res=>{
@@ -42,23 +43,36 @@ class index extends React.Component {
     }
   render() {
     let { datas } = this.state;
-    return <div>
-        <div style={{ background: '#ECECEC', padding: '30px', }} id='card'>
+    return <div id='card'>
+    <div id='pages'>
         {
-          datas.map(v => {
-            return (
-              <Card title={v.title} bordered={false} style={{ width: 300, boxShadow: '7px 7px 5px 7px 5px #ccc' }}>
-                <p>{v.title}</p>
-                <p>{v.tags}</p>
-                <p>{v.thumb}</p>
-        </Card>)
-          })
+          <Pagination current={this.state.count} onChange={this.onChange} total={240} defaultPageSize={this.state.pages}/>
         }
       </div>
       {
+      //   <div style={{ background: '#ECECEC', padding: '30px', }} id='card' pagination={{
+      //   pageSize:6,
+      //   total:Number(240),
+      //   onChange:page=>this.onChange(page)
+      //  }}>
+      }
+        {
+          datas.map(v => {
+            return (
+              <div className='car'>
+                  <Card title={v.title} bordered={false} >
+                    <p>{v.title}</p>
+                    <p>{v.tags}</p>
+                    
+            </Card>
+              </div>
+             )
+          })
+        }
+      {
       //   <Table 
       // rowKey='id' 
-      // pagination={{
+      // pagination={{<p>{v.thumb}</p>
       //   pageSize:20,
       //   total:Number(240),
       //   onChange:page=>this.onChange(page)
@@ -66,6 +80,7 @@ class index extends React.Component {
       //   columns={columns}  dataSource={datas}
       //   />
       }
+     
     </div>;
   }
 }
