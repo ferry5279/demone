@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Table } from 'antd';
+import { Table ,Pagination } from 'antd';
 
 const columns = [
   {
@@ -23,15 +23,15 @@ const columns = [
 ];
 class index extends React.Component {
   state = {
-    data: [],
+    datas: [],
     count:0
   }
   componentDidMount() {
     console.log(this.props)
-   axios.get('https://blogs.zdldove.top/Home/Apis/listWithPage?page='+0).then(res=>{
+   axios.get('https://blogs.zdldove.top/Home/Apis/listWithPage?page='+this.state.count).then(res=>{
      console.log(res)
      this.setState({
-       data:res.data.result
+       datas:res.data.result.list
      })
    })
   }
@@ -40,23 +40,21 @@ class index extends React.Component {
     axios.get('https://blogs.zdldove.top/Home/Apis/listWithPage?page='+page).then(res=>{
      console.log(res)
      this.setState({
-       data:res.data.result
+       datas:res.data.result.list
      })
    })
     }
   render() {
-    let { data,count } = this.state;
+    let { datas,count } = this.state;
     return <div>
-      <Table 
+           <Table 
       rowKey='id' 
       pagination={{
-                pageSize:20,
-                total:Number(count),
-                onChange:page=>this.onChange(page)
-            }}
-        columns={columns}
-        dataSource={data}
-        size="small"
+        pageSize:20,
+        total:Number(240),
+        onChange:page=>this.onChange(page)
+       }}
+        columns={columns}  dataSource={datas}
      />
     </div>;
   }
