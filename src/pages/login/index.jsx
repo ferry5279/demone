@@ -12,6 +12,7 @@ class index extends React.Component {
       axios.post('https://api.baxiaobu.com/index.php/home/v1/login',{username:this.refs.user.value}).then((res)=>{
         if (res.status === 200) {
           message.info('Login Successful');
+          localStorage.setItem('login',true)
           this.props.history.push('/home')
        }
 		 }) 

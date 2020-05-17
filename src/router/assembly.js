@@ -5,11 +5,13 @@ const Login = Loadable(() =>
 const Home = Loadable(() =>
     import ('@/pages/home'))
 const Reg = Loadable(() =>
-        import ('@/pages/reg'))
-    // const Mine = Loadable(() =>
-    //     import ('@/pages/mine'))
-    // const Login = Loadable(() =>
-    //     import ('@/pages/login'))
-    // const Study = Loadable(() =>
-    //     import ('@/pages/study'))
-export { Login, Home, Reg }
+    import ('@/pages/reg'))
+const Charts = Loadable(() =>
+    import ('@/pages/charts'))
+const Table = Loadable(() =>
+    import ('@/pages/table'))
+const Sample = Loadable(() =>
+    import ('@/pages/sample'))
+const Form = Loadable(() =>
+    import ('@/pages/sample'))
+export { Login, Home, Reg, Charts, Table, Sample, Form }
