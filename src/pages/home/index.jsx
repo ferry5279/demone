@@ -28,16 +28,13 @@ class index extends React.Component {
       })
    })
   }
-  // componentDidMount() {
-  //   console.log(this.props,11)
+  componentDidMount() {
+    const loc = localStorage.getItem('login');
+    if (!loc) {
+      this.props.history.push('/login')
+    }
     
-  // }
-  // componentWillReceiveProps(nextProps) {
-  //   // nextProps.children.props.children.forEach(v => {
-  //   //   console.log(v.props.path)
-  //   // })
-  //   console.log(nextProps,22)
-  // }
+  }
   render() {
     console.log(this.props)
     let { list } = this.state;

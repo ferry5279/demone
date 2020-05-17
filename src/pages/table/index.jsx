@@ -1,6 +1,6 @@
 import React from 'react';
 import {  Button ,message,Divider ,Progress,Input } from 'antd';
-import axios from 'axios';
+import {post,get} from '@/untils/request';
 import './style.less'
 import { Table } from 'antd';
 const { Search } = Input;
@@ -52,19 +52,19 @@ class index extends React.Component {
   }
   componentDidMount() {
     console.log(this.props)
-   axios.get('https://api.baxiaobu.com/index.php/home/v5/findUser').then(res=>{
+   get('https://api.baxiaobu.com/index.php/home/v5/findUser').then(res=>{
      console.log(res)
      this.setState({
-       data:res.data.users
+       data:res.users
      })
    })
   }
   sear = (value) => {
    console.log(value)
-    axios.get('https://api.baxiaobu.com/index.php/home/v5/findUser?keyword=' + value).then(res => {
+    get('https://api.baxiaobu.com/index.php/home/v5/findUser?keyword=' + value).then(res => {
       console.log(res)
       this.setState({
-        data:res.data.users
+        data:res.users
       })
    })
   }

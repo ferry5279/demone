@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input, Button ,message} from 'antd';
-import axios from 'axios';
+import { post } from '@/untils/request';
 import './style.less'
 
 class index extends React.Component {
@@ -13,21 +13,20 @@ class index extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        axios.post('https://api.baxiaobu.com/index.php/home/v5/add', values).then(res => {
+        post('https://api.baxiaobu.com/index.php/home/v5/add', values).then(res => {
           console.log(res)
-          if(res.status===200){
-            message.info('添加成功')
+          if(res.status==="200"){
+            message.info(res.info)
             this.props.history.push('/home/table')
           }
         })
       }
     });
 }
-  cancel = () => {
-    this.props.form.setFieldsValue({
-          name:'',msg:'',age:'',hospital:'',gender:''
-          });
-}
+handleReset = () => {
+  this.props.form.resetFields();
+};
+
   render() {
     const { getFieldDecorator } = this.props.form;
   const { formLayout } = this.state;
@@ -82,7 +81,7 @@ class index extends React.Component {
           </Form.Item>
           <Form.Item {...buttonItemLayout}>
             <Button type="primary" htmlType="submit"  className="login-form-button">Submit</Button>
-            <Button type="" onClick={()=>{this.cancel()}}>Cancel</Button>
+            <Button type="" onClick={()=>{this.handleReset()}}>Cancel</Button>
           </Form.Item>
         </Form>
       </div>
