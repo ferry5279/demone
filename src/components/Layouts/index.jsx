@@ -1,15 +1,20 @@
 import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Input } from 'antd';
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios';
 import './style.less';
 import logo from '@/untils/11.png';
+
+// import axios from 'axios';
+// import {  message } from 'antd';
+import Sample from '@/pages/sample'
+import Table from '@/pages/table'
+import Form from '@/pages/form'
+import Charts from '@/pages/charts'
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 const { Search } = Input;
-// import axios from 'axios';
-// import {  message } from 'antd';
-
 class index extends React.Component {
   state = {
     list:[]
@@ -148,7 +153,15 @@ class index extends React.Component {
             minHeight: 280,
           }}
         >
-              <div list={list}>{this.props.children}</div>
+              <Route path='/home/table' component={Table} />  
+              <Switch>
+              <Route path='/home/sample' component={Sample} />  
+              <Route path='/home/form' component={Form} />  
+                <Route path='/home' component={Charts} />  
+                <Redirect to='/home' />
+              </Switch>
+              {// <div list={list}>{this.props.children}</div>
+              }
         </Content>
       </Layout>
     </Layout>

@@ -1,9 +1,9 @@
 import React from 'react';
-import {  Button ,message,Divider ,Progress } from 'antd';
+import {  Button ,message,Divider ,Progress,Input } from 'antd';
 import axios from 'axios';
 import './style.less'
 import { Table } from 'antd';
-
+const { Search } = Input;
 const columns = [
   {
     title: 'User',
@@ -58,17 +58,35 @@ class index extends React.Component {
        data:res.data.users
      })
    })
- }
+  }
+  sear = (value) => {
+   console.log(value)
+    axios.get('https://api.baxiaobu.com/index.php/home/v5/findUser?keyword=' + value).then(res => {
+      console.log(res)
+      this.setState({
+        data:res.data.users
+      })
+   })
+  }
   render() {
     console.log(this.props,4)
     const { data } = this.state;
     return <div id='table'>
       <h2>Striped Table</h2>
-      <ul id='ul'>
-        <li>Add  class</li>
-        <li>.table-striped</li>
-        <li><Button type='primary' onClick={()=>{this.props.history.push('/home/form')}}>Add User</Button></li>
-      </ul>
+      <div>
+        <ul id='ul'>
+          <li>Add  class</li>
+          <li>.table-striped</li>
+          <li><Button type='primary' onClick={()=>{this.props.history.push('/home/form')}}>Add User</Button></li>
+        </ul>
+        <div className='sear'>
+          <Search
+            placeholder="input search text"
+            onSearch={(value) =>this.sear(value)}
+            style={{ width: 200 }}
+          />
+        </div>
+      </div>
       <Table rowKey='id' columns={columns} dataSource={data} size="small" />
     </div>;
   }
