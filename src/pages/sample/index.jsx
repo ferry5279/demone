@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { Table  } from 'antd';
-
+import { Table,Card  } from 'antd';
+import './style.less'
 const columns = [
   {
     title: 'ID',
@@ -43,15 +43,29 @@ class index extends React.Component {
   render() {
     let { datas } = this.state;
     return <div>
-           <Table 
-      rowKey='id' 
-      pagination={{
-        pageSize:20,
-        total:Number(240),
-        onChange:page=>this.onChange(page)
-       }}
-        columns={columns}  dataSource={datas}
-     />
+        <div style={{ background: '#ECECEC', padding: '30px', }} id='card'>
+        {
+          datas.map(v => {
+            return (
+              <Card title={v.title} bordered={false} style={{ width: 300, boxShadow: '7px 7px 5px 7px 5px #ccc' }}>
+                <p>{v.title}</p>
+                <p>{v.tags}</p>
+                <p>{v.thumb}</p>
+        </Card>)
+          })
+        }
+      </div>
+      {
+      //   <Table 
+      // rowKey='id' 
+      // pagination={{
+      //   pageSize:20,
+      //   total:Number(240),
+      //   onChange:page=>this.onChange(page)
+      //  }}
+      //   columns={columns}  dataSource={datas}
+      //   />
+      }
     </div>;
   }
 }
