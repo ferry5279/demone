@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Table ,Pagination } from 'antd';
+import { Table  } from 'antd';
 
 const columns = [
   {
@@ -36,7 +36,6 @@ class index extends React.Component {
    })
   }
   onChange= page =>{
-    console.log(page,22)
     axios.get('https://blogs.zdldove.top/Home/Apis/listWithPage?page='+page).then(res=>{
      console.log(res)
      this.setState({
@@ -45,7 +44,7 @@ class index extends React.Component {
    })
     }
   render() {
-    let { datas,count } = this.state;
+    let { datas } = this.state;
     return <div>
            <Table 
       rowKey='id' 
