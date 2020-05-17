@@ -2,19 +2,15 @@ import React from 'react';
 import { Form, Input, Button ,message} from 'antd';
 import { post } from '@/untils/request';
 import './style.less'
-
 class index extends React.Component {
   state = {
       formLayout: 'vertical',
     };
   handleSubmit = e => {
     e.preventDefault();
-    // console.log(this.props.form)
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
         post('https://api.baxiaobu.com/index.php/home/v5/add', values).then(res => {
-          console.log(res)
           if(res.status==="200"){
             message.info(res.info)
             this.props.history.push('/home/table')

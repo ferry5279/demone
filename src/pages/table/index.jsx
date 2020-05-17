@@ -1,6 +1,6 @@
 import React from 'react';
-import {  Button ,message,Divider ,Progress,Input } from 'antd';
-import {post,get} from '@/untils/request';
+import {  Button ,Divider ,Progress,Input } from 'antd';
+import { get } from '@/untils/request';
 import './style.less'
 import { Table } from 'antd';
 const { Search } = Input;
@@ -51,25 +51,20 @@ class index extends React.Component {
     data:[]
   }
   componentDidMount() {
-    console.log(this.props)
    get('https://api.baxiaobu.com/index.php/home/v5/findUser').then(res=>{
-     console.log(res)
      this.setState({
        data:res.users
      })
    })
   }
   sear = (value) => {
-   console.log(value)
     get('https://api.baxiaobu.com/index.php/home/v5/findUser?keyword=' + value).then(res => {
-      console.log(res)
       this.setState({
         data:res.users
       })
    })
   }
   render() {
-    console.log(this.props,4)
     const { data } = this.state;
     return <div id='table'>
       <h2>Striped Table</h2>

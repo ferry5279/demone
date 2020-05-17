@@ -27,9 +27,7 @@ class index extends React.Component {
     count:0
   }
   componentDidMount() {
-    console.log(this.props)
    axios.get('https://blogs.zdldove.top/Home/Apis/listWithPage?page='+this.state.count).then(res=>{
-     console.log(res)
      this.setState({
        datas:res.data.result.list
      })
@@ -37,7 +35,6 @@ class index extends React.Component {
   }
   onChange= page =>{
     axios.get('https://blogs.zdldove.top/Home/Apis/listWithPage?page='+page).then(res=>{
-     console.log(res)
      this.setState({
        datas:res.data.result.list
      })
@@ -58,6 +55,4 @@ class index extends React.Component {
     </div>;
   }
 }
-
-
 export default index;

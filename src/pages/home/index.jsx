@@ -5,9 +5,6 @@ import { NavLink } from 'react-router-dom'
 import axios from 'axios';
 import './style.less';
 import logo from '@/untils/11.png';
-
-// import axios from 'axios';
-// import {  message } from 'antd';
 import Sample from '@/pages/sample'
 import Table from '@/pages/table'
 import Form from '@/pages/form'
@@ -16,9 +13,7 @@ const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 const { Search } = Input;
 class index extends React.Component {
-  state = {
-    list:[]
-  }
+  
   sear = (value) => {
    console.log(value)
     axios.get('https://api.baxiaobu.com/index.php/home/v5/findUser?keyword=' + value).then(res => {
@@ -36,9 +31,7 @@ class index extends React.Component {
     
   }
   render() {
-    console.log(this.props)
-    let { list } = this.state;
-    return <div id='lay'  >
+    return <div id='home'  >
         <Layout>
           <Header className="header">
           <div className="logo" >
@@ -138,9 +131,6 @@ class index extends React.Component {
       </Sider>
       <Layout style={{ padding: '0 24px 24px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
-          {/* <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item> */}
         </Breadcrumb>
         <Content
           style={{
@@ -150,7 +140,6 @@ class index extends React.Component {
             minHeight: 280,
           }}
         >
-              
               <Switch>
               <Route path='/home/table' component={Table} />  
               <Route path='/home/sample' component={Sample} />  
