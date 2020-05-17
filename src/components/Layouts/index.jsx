@@ -11,12 +11,16 @@ const { Search } = Input;
 // import {  message } from 'antd';
 
 class index extends React.Component {
- 
+  state = {
+    list:[]
+  }
   sear = (value) => {
    console.log(value)
     axios.get('https://api.baxiaobu.com/index.php/home/v5/findUser?keyword=' + value).then(res => {
       console.log(res)
-      localStorage.setItem('seardata',JSON.stringify(res.data.info))
+      this.setState({
+        list:res.data.info
+      })
    })
   }
   componentDidMount() {
@@ -24,10 +28,14 @@ class index extends React.Component {
     
   }
   componentWillReceiveProps(nextProps) {
+    // nextProps.children.props.children.forEach(v => {
+    //   console.log(v.props.path)
+    // })
     console.log(nextProps,22)
   }
   render() {
     console.log(this.props)
+    let { list } = this.state;
     return <div id='lay'  >
         <Layout>
           <Header className="header">
@@ -140,7 +148,7 @@ class index extends React.Component {
             minHeight: 280,
           }}
         >
-        {this.props.children}
+              <div list={list}>{this.props.children}</div>
         </Content>
       </Layout>
     </Layout>

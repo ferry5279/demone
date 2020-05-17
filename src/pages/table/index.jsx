@@ -60,6 +60,7 @@ class index extends React.Component {
    })
  }
   render() {
+    console.log(this.props,4)
     const { data } = this.state;
     return <div id='table'>
       <h2>Striped Table</h2>
