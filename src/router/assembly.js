@@ -13,5 +13,5 @@ const Table = Loadable(() =>
 const Sample = Loadable(() =>
     import ('@/pages/sample'))
 const Form = Loadable(() =>
-    import ('@/pages/sample'))
+    import ('@/pages/form'))
 export { Login, Home, Reg, Charts, Table, Sample, Form }
