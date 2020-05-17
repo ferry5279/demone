@@ -4,16 +4,21 @@ import { Table } from 'antd';
 
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
+    title: 'ID',
+    dataIndex: 'id',
+    render: text => <a>{text}</a>,
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
+    title: '标题',
+    dataIndex: 'title',
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
+    title: '状态',
+    dataIndex: 'tags',
+  },
+  {
+    title: '地址',
+    dataIndex: 'thumb',
   },
 ];
 class index extends React.Component {
@@ -45,10 +50,10 @@ class index extends React.Component {
       <Table 
       rowKey='id' 
       pagination={{
-        pageSize:20,
-        total:Number(count),
-        onChange:page=>this.onChange(page)
-     }}
+                pageSize:20,
+                total:Number(count),
+                onChange:page=>this.onChange(page)
+            }}
         columns={columns}
         dataSource={data}
         size="small"
