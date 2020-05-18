@@ -1,25 +1,26 @@
 import React from 'react';
-import axios from 'axios';
+import { post } from '@/untils/request';
 import {  message } from 'antd';
 import './style.less';
+import api from '@/services/api'
 class index extends React.Component {
   reg = () => {
     if (this.refs.user.value === '') {
-      alert('用户名为空')
+      message.info('用户名为空')
     }else if (this.refs.pwd.value === '') {
-      alert('密码为空')
+      message.info('密码为空')
     }else if (this.refs.surepwd.value !== this.refs.pwd.value) {
-      alert('密码不一致')
+      message.info('密码不一致')
     } else {
-      axios.post('http://api.baxiaobu.com/index.php/home/v1/register',{username:this.refs.user.value,pwd:this.refs.pwd.value}).then((res)=>{
-        if (res.status === 200) {
+      post(`/apb${api.reg}`, { username: this.refs.user.value, pwd: this.refs.pwd.value }).then((res) => {
+        console.log(res)
+        if (res.status === '200') {
           message.info('Registration successful');
           this.props.history.push('/login')
        }
 		 }) 
     }
   }
-
   render() {
     return <div id='reg'>
          <div className="wrap">

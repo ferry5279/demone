@@ -1,7 +1,14 @@
 import React from 'react';
-import { Form, Input, Button ,message} from 'antd';
-import { post } from '@/untils/request';
-import './style.less'
+import { Form, Input, Button, message } from 'antd';
+import { connect } from 'react-redux'
+import { addData } from '@/actions/data'
+import './style.less';
+export default @connect(state=>{
+return {
+  data: state.data.datas,
+}
+}, { addData })
+@Form.create({ name: 'normal_login' })
 class index extends React.Component {
   state = {
       formLayout: 'vertical',
@@ -10,12 +17,9 @@ class index extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        post('https://api.baxiaobu.com/index.php/home/v5/add', values).then(res => {
-          if(res.status==="200"){
-            message.info(res.info)
-            this.props.history.push('/home/table')
-          }
-        })
+        this.props.addData(values)
+        this.props.history.push('/home/table')
+       
       }
     });
 }
@@ -84,6 +88,3 @@ handleReset = () => {
     </div>;
   }
 }
-
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(index);
-export default WrappedNormalLoginForm;
