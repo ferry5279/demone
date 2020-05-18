@@ -13,4 +13,12 @@ const Sample = Loadable(() =>
     import ('@/pages/sample'))
 const Form = Loadable(() =>
     import ('@/pages/form'))
-export { Login, Home, Reg, Charts, Table, Sample, Form }
+export {
+    Login,
+    Home,
+    Reg,
+    Charts,
+    Table,
+    Sample,
+    Form
+}

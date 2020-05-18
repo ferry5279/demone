@@ -16,5 +16,5 @@ ReactDOM.render(
       </BrowserRouter>
     </PersistGate>
   </Provider>,
-    document.querySelector('#root'));
+  document.querySelector('#root'));
   

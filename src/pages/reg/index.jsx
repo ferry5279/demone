@@ -34,6 +34,4 @@ class index extends React.Component {
     </div>;
   }
 }
-
-
 export default index;

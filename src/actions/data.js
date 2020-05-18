@@ -1,5 +1,10 @@
 import {get, post } from '@/untils/request';
-import { DEFAULT_DATA, SEAR_DATA, ADD_DATA, SAMPLE_DATA } from '@/constants/actionTypes'
+import {
+    DEFAULT_DATA,
+    SEAR_DATA,
+    ADD_DATA,
+    SAMPLE_DATA
+} from '@/constants/actionTypes'
 import api from '@/services/api'
 export function defaultData(payload) {
     return {

@@ -5,17 +5,17 @@ import { sampleData } from '@/actions/data'
 import './style.less'
 export default @connect(state => {
   return {
-      datas: state.data.pagesdata ,
-      count: state.data.count
+    datas: state.data.pagesdata ,
+    count: state.data.count
   }
 }, { sampleData })
 class index extends React.Component {
   componentDidMount() {
-  this.onChange(0)
+    this.onChange(0)
   }
   onChange = page => {
     this.props.sampleData(page)
-    }
+  }
   render() {
     let { datas,count } = this.props;
     return <div id='card'>

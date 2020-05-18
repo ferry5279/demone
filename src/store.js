@@ -21,11 +21,10 @@ const myPersistReducer = persistReducer(
     combineReducers({
         data,
         login
-    }))
+    })
+)
 const store = createStore(
     myPersistReducer,
     composeEnhancers(applyMiddleware(promise, thunk))
 );
-
-
 export { store }
