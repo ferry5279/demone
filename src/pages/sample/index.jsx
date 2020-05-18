@@ -49,13 +49,6 @@ class index extends React.Component {
           <Pagination current={this.state.count} onChange={this.onChange} total={240} defaultPageSize={this.state.pages}/>
         }
       </div>
-      {
-      //   <div style={{ background: '#ECECEC', padding: '30px', }} id='card' pagination={{
-      //   pageSize:6,
-      //   total:Number(240),
-      //   onChange:page=>this.onChange(page)
-      //  }}>
-      }
         {
           datas.map(v => {
             return (
@@ -69,17 +62,6 @@ class index extends React.Component {
              )
           })
         }
-      {
-      //   <Table 
-      // rowKey='id' 
-      // pagination={{<p>{v.thumb}</p>
-      //   pageSize:20,
-      //   total:Number(240),
-      //   onChange:page=>this.onChange(page)
-      //  }}
-      //   columns={columns}  dataSource={datas}
-      //   />
-      }
      
     </div>;
   }
